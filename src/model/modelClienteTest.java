@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class modelClienteTest {
+
+    //aqui cria um criador
     String nome = JOptionPane.showInputDialog("Nome: ");
     String sexo = JOptionPane.showInputDialog("Sexo: ");
     String telefone = JOptionPane.showInputDialog("Telefone: ");
@@ -34,8 +36,6 @@ class modelClienteTest {
     void validanome(){
         assertTrue(cliente.validaNome(cliente));
     }
-
-
 
 
 }
