@@ -1,70 +1,40 @@
 package model;
 
 public class modelCliente {
+    private static int ultimoId = 0;
 
+    private int id;
     private String nome;
     private String sexo;
-    private String telefone;
+    private Integer telefone;
     private String endereco;
 
-    public modelCliente(String nome, String sexo, String telefone, String endereco) {
+    public modelCliente(String nome, String sexo, Integer telefone, String endereco) {
+        this.id = ++ultimoId;
         this.nome = nome;
         this.sexo = sexo;
         this.telefone = telefone;
         this.endereco = endereco;
     }
 
-    public String getNome() {
-        return nome;
+    public int getId() {
+        return id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public boolean validaTelefone(){
+        String numeroStr = Integer.toString(telefone);
+        return numeroStr.length() == 9;
     }
 
-    public String getSexo() {
-        return sexo;
+    public boolean dadosNulo() {
+        return nome == null || nome.isEmpty() || sexo == null || sexo.isEmpty()  || endereco == null || endereco.isEmpty() || telefone == null;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+
+    public boolean validaNomeSemNumero() {
+        return nome.matches(".*\\d.*");
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public boolean validaTelefone(modelCliente cliente){
-        return cliente.getTelefone().length() == 9;
-    }
-
-    public Boolean dadosNulo(modelCliente cliente) {
-        if (cliente.getNome().isEmpty() || cliente.getSexo().isEmpty() || cliente.getTelefone().isEmpty() || cliente.getEndereco().isEmpty()) {
-            return null;
-        }
-
-        return true;
-    }
-
-    public boolean validaNome(modelCliente cliente) {
-        return cliente.getNome().matches(".*\\d.*");
-    }
-
-//    public boolean validaNomeTipo(modelCliente cliente) {
-//        return cliente.getNome() instanceof String;
-//    }
 
 
 }

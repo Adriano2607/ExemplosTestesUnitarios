@@ -1,40 +1,36 @@
 package model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.*;
-
-import static javax.swing.JOptionPane.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
 
 class modelClienteTest {
+    private modelCliente cliente;
 
-    //aqui cria um criador
-    String nome = JOptionPane.showInputDialog("Nome: ");
-    String sexo = JOptionPane.showInputDialog("Sexo: ");
-    String telefone = JOptionPane.showInputDialog("Telefone: ");
-    String endereco = JOptionPane.showInputDialog("Endereço: ");
-    modelCliente cliente = new modelCliente(nome,sexo,telefone,endereco);
+    @BeforeEach
+    void cfg() {
+        cliente = new modelCliente("Nome", "Sexo", 123456789, "Endereço");
+    }
 
     @Test
-    @DisplayName("verifica 9 digitos telefone")
+    @DisplayName("Verifica se o telefone tem 9 dígitos")
      void validaTelefone(){
-        assertTrue(cliente.validaTelefone(cliente));
+        assertTrue(cliente.validaTelefone());
     }
 
     @Test
-    @DisplayName("Verifica Nulo")
+    @DisplayName("Verifica se os dados não são nulos")
     void validaNulo(){
-       assertNull(cliente.dadosNulo(cliente));
+       assertFalse(cliente.dadosNulo());
     }
 
     @Test
-    @DisplayName("true se tiver numero no nome")
+    @DisplayName("Verifica se o nome não contém números")
     void validanome(){
-        assertTrue(cliente.validaNome(cliente));
+        assertFalse(cliente.validaNomeSemNumero());
     }
 
 
